@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Receipt Generator</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Fuel Bill Form</h2>
+
+        <label for="presetLogo">Choose a saved logo:</label>
+        <select id="presetLogo" onchange="selectPresetLogo()">
+            <option value="">Select a logo</option>
+            <option value="/img/Indian%20Oil.png">Indian Oil</option>
+            <option value="/img/Hp.png">HP</option>
+            <option value="/img/Bharat%20Petrol.png">Bharat Petroleum</option>
+        </select>
+
+        <label for="logoUpload">Or upload a logo from your device:</label>
+        <input type="file" id="logoUpload" accept="image/*" onchange="updateLogo()">
+
+        <label>
+            Petrol Station Name:
+            <input type="text" id="stationName" oninput="updateReceipt()" placeholder="Bharat Petroleum">
+        </label>
+
+        <label>
+            Tax No:
+            <input type="text" id="taxNo" oninput="updateReceipt()" placeholder="Q6AAMPW69SOB1ZS">
+        </label>
+
+        <label>
+            Tel No:
+            <input type="text" id="telNo" oninput="updateReceipt()" placeholder="Enter phone number">
+        </label>
+
+        <label>
+            Receipt No:
+            <input type="text" id="receiptNo" oninput="updateReceipt()" placeholder="5414">
+        </label>
+
+        <label>FCC ID: <input type="text" id="fccId" oninput="updateReceipt()"></label>
+        <label>FIP No: <input type="text" id="fipNo" oninput="updateReceipt()"></label>
+        <label>Nozzle No: <input type="text" id="nozzleNo" oninput="updateReceipt()"></label>
+
+        <label>Litres: <input type="number" id="litres" oninput="updateReceipt()"></label>
+        <label>Rate per Litre: <input type="number" id="rate" oninput="updateReceipt()"></label>
+
+        <label>
+            Payment Mode:
+            <select id="mode" onchange="updateReceipt()">
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+                <option value="UPI">UPI</option>
+            </select>
+        </label>
+
+        <label>
+            Fuel Type:
+            <select id="fuelType" onchange="updateReceipt()">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+            </select>
+        </label>
+
+        <label>Vehicle No: <input type="text" id="vehicleNo" oninput="updateReceipt()"></label>
+        <label>Customer Name: <input type="text" id="customerName" oninput="updateReceipt()"></label>
+
+        <label>Date: <input type="date" id="date" oninput="updateReceipt()"></label>
+        <label>Time: <input type="time" id="time" oninput="updateReceipt()"></label>
+
+        <button type="button" onclick="downloadReceipt()">Download as PNG</button>
+    </div>
+
+    <div class="receipt" id="receipt">
+        <div class="receipt-content">
+            <img class="logo" id="receiptLogo" style="display: none;" alt="Station logo">
+
+            <p class="center bold">WELCOME!!!</p>
+            <p class="center" id="outStation">Bharat Petroleum</p>
+
+            <p>TAX NO: <span id="outTaxNo">Q6AAMPW69SOB1ZS</span></p>
+            <p>TEL NO: <span id="outTelNo"></span></p>
+            <p>RECEIPT NO: <span id="outReceiptNo">5414</span></p>
+            <p>FCC ID: <span id="outFccId"></span></p>
+            <p>FIP NO: <span id="outFipNo"></span></p>
+            <p>NOZZLE NO: <span id="outNozzleNo"></span></p>
+
+            <p>RATE/LTR: ₹<span id="outRate">0</span></p>
+            <p>AMOUNT: ₹<span id="outAmount">0</span></p>
+            <p>VOLUME(LTR): <span id="outLitres">0</span> lt</p>
+
+            <p>VEH TYPE: <span id="outFuel">Petrol</span></p>
+            <p>VEH NO: <span id="outVeh">---</span></p>
+            <p>CUSTOMER NAME: <span id="outCust">---</span></p>
+
+            <p>DATE: <span id="outDate">---</span></p>
+            <p>TIME: <span id="outTime">---</span></p>
+
+            <p>MODE: <span id="outMode">Cash</span></p>
+            <p>LST NO:</p>
+            <p>VAT NO:</p>
+            <p>ATTENDANT ID: not available</p>
+
+            <p class="center">***************</p>
+            <p class="center">Thank You! Visit Again</p>
+            <p class="center">Save Fuel, Save Money.</p>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+
+</html>
